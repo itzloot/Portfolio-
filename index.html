@@ -3,107 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fahad Malik | Professional Portfolio</title>
+  <title>Fahad Malik | Portfolio</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- CORPORATE SVG BACKGROUND -->
-<svg class="bg-svg" viewBox="0 0 1440 600" preserveAspectRatio="none">
-  <defs>
-    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#020617"/>
-    </linearGradient>
-  </defs>
-  <rect width="1440" height="600" fill="url(#grad)"/>
-  <circle cx="1100" cy="100" r="220" fill="rgba(255,255,255,0.05)"/>
-  <circle cx="200" cy="300" r="300" fill="rgba(255,255,255,0.04)"/>
-</svg>
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#020617"/>
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="600" fill="url(#grad)"/>
+      <circle cx="1100" cy="100" r="220" fill="rgba(255,255,255,0.05)"/>
+      <circle cx="200" cy="300" r="300" fill="rgba(255,255,255,0.04)"/>
+    </svg>
+    <div class="overlay"></div>
+  </div>
 
-<header class="hero">
   <div class="hero-content">
     <h1>Fahad Malik</h1>
     <p class="role">Web Developer • Technical Leader • Creative Designer</p>
-
     <p class="summary">
       Results-driven web developer with experience in building scalable digital products,
       leading communities, and delivering professional-grade design solutions aligned
       with enterprise standards.
     </p>
-
     <div class="cta-group">
-      <a class="btn btn-primary" href="https://nova-hoya-ai.vercel.app" target="_blank">
-        View Live Product
-      </a>
-
-      <a class="btn btn-outline" href="https://discord.com/users/1433020695561896006" target="_blank">
-        Contact Me
-      </a>
+      <a href="https://nova-hoya-ai.vercel.app" target="_blank" class="btn btn-primary">View Live Product</a>
+      <a href="https://discord.com/users/1433020695561896006" target="_blank" class="btn btn-outline">Contact Me</a>
     </div>
   </div>
-</header>
+</section>
 
+<!-- PROFESSIONAL SUMMARY -->
 <section class="section">
   <h2>Professional Summary</h2>
   <p>
-    I am <strong>Fahad Malik</strong> (professionally known as <strong>ItzLooTdev</strong>), a 23-year-old
-    developer specializing in modern web technologies. I combine strong technical execution
-    with leadership, moderation, and creative design capabilities.
-  </p>
-  <p>
-    My focus is on building maintainable systems, clean interfaces, and scalable architectures
-    suitable for enterprise environments such as Infosys.
+    I am <strong>Fahad Malik</strong> (professionally <strong>ItzLooTdev</strong>), a 23-year-old developer specializing in modern web technologies. 
+    I combine strong technical execution with leadership, moderation, and creative design capabilities.
+    My focus is on building maintainable systems, clean interfaces, and scalable architectures suitable for enterprise environments such as Infosys.
   </p>
 </section>
 
+<!-- CORE SKILLS -->
 <section class="section gray">
   <h2>Core Skills</h2>
-
   <div class="grid">
-    <div class="card">
+    <div class="card skill-card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 4h18v4H3V4zm0 6h18v10H3V10z"/></svg>
       <h3>Web Development</h3>
       <p>HTML, CSS, JavaScript with emphasis on performance and scalability.</p>
     </div>
-
-    <div class="card">
+    <div class="card skill-card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2z"/></svg>
       <h3>Leadership & Moderation</h3>
       <p>Team coordination, decision-making, and structured community management.</p>
     </div>
-
-    <div class="card">
+    <div class="card skill-card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
       <h3>Creative Design</h3>
       <p>Professional logos, banners, posters, ads, and branding materials.</p>
     </div>
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section class="section">
   <h2>Projects</h2>
+  <div class="grid">
+    <div class="project-card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 3l9 6v6c0 5-9 6-9 6s-9-1-9-6V9l9-6z"/></svg>
+      <h3>NovaHoyaAI</h3>
+      <p>An AI-driven platform focused on intelligent automation and user-centric digital experiences, designed with scalability and enterprise readiness.</p>
+      <a class="btn btn-primary small" href="https://nova-hoya-ai.vercel.app" target="_blank">Try Now</a>
+    </div>
 
-  <div class="project-card">
-    <h3>NovaHoyaAI</h3>
-    <p>
-      An AI-driven platform focused on intelligent automation and user-centric digital experiences.
-      Designed with scalability and enterprise-readiness in mind.
-    </p>
-
-    <a class="btn btn-primary small" href="https://nova-hoya-ai.vercel.app" target="_blank">
-      Try Now
-    </a>
-  </div>
-
-  <div class="project-card">
-    <h3>DevTooL (npm Package)</h3>
-    <p>
-      A developer productivity toolkit currently under development to improve workflow
-      efficiency for JavaScript developers.
-    </p>
+    <div class="project-card">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/></svg>
+      <h3>DevTooL (npm Package)</h3>
+      <p>A developer productivity toolkit currently under development to improve workflow efficiency for JavaScript developers.</p>
+    </div>
   </div>
 </section>
 
+<!-- PERSONAL INFORMATION -->
 <section class="section gray">
   <h2>Personal Information</h2>
   <ul class="info">
@@ -114,6 +104,7 @@
   </ul>
 </section>
 
+<!-- FOOTER -->
 <footer>
   © 2025 Fahad Malik — Professional Portfolio
 </footer>
