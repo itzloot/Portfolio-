@@ -52,17 +52,13 @@ footer{text-align:center;padding:40px;color:#94a3b8;border-top:1px solid rgba(96
   .project-card{flex-direction:column;}
 }
 .skill-icon {
-  width: 36px;
-  height: 36px;
-  stroke: #2563eb;          /* PROFESSIONAL BLUE */
-  stroke-width: 2;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: transform 0.3s ease, stroke 0.3s ease;
+  width: 42px;
+  height: 42px;
+  fill: #2563eb;           /* PROFESSIONAL BLUE */
+  transition: transform 0.3s ease, fill 0.3s ease;
 }
 
 .skill-card:hover .skill-icon {
-  stroke: #60a5fa;          /* Lighter blue on hover */
+  fill: #60a5fa;           /* Hover blue */
   transform: scale(1.15);
 }
