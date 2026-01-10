@@ -1,105 +1,534 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fahad Malik | Software Engineer & Designer</title>
   <meta name="description" content="Portfolio of Fahad Malik - Software engineer, web developer, ethical hacker, and creative designer with 3+ years of experience."/>
   
-  <!-- Google Fonts (Geist) -->
+  <!-- Icons (lucide-react like) - using simple SVG or fontawesome CDN for demo -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <!-- Geist Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CDN (v4 works great) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Geist', 'system-ui', 'sans-serif'],
-            mono: ['Geist Mono', 'ui-monospace', 'monospace'],
-          },
-          colors: {
-            background: 'oklch(0.98 0.01 280)',
-            foreground: 'oklch(0.1 0.02 280)',
-            primary: 'oklch(0.5 0.16 260)',
-            accent: 'oklch(0.6 0.18 30)',
-            // ... add all your other variables here
-            muted: 'oklch(0.88 0.01 280)',
-            mutedForeground: 'oklch(0.5 0.02 280)',
-            border: 'oklch(0.88 0.01 280)',
-            // Add more as needed
-          },
-          borderRadius: {
-            lg: 'var(--radius)',
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Your custom variables & dark mode -->
   <style>
     :root {
       --background: oklch(0.98 0.01 280);
       --foreground: oklch(0.1 0.02 280);
+      --card: oklch(0.95 0.02 280);
+      --card-foreground: oklch(0.12 0.02 280);
+      --popover: oklch(1 0 0);
+      --popover-foreground: oklch(0.1 0.02 280);
       --primary: oklch(0.5 0.16 260);
-      --accent: oklch(0.6 0.18 30);
+      --primary-foreground: oklch(0.98 0 0);
+      --secondary: oklch(0.92 0.02 280);
+      --secondary-foreground: oklch(0.12 0.02 280);
       --muted: oklch(0.88 0.01 280);
       --muted-foreground: oklch(0.5 0.02 280);
+      --accent: oklch(0.6 0.18 30);
+      --accent-foreground: oklch(0.98 0 0);
+      --destructive: oklch(0.577 0.245 27.325);
       --border: oklch(0.88 0.01 280);
       --radius: 0.625rem;
-      /* Add ALL your other variables here from globals.css */
     }
+
     .dark {
       --background: oklch(0.12 0.01 260);
       --foreground: oklch(0.95 0.01 280);
+      --card: oklch(0.15 0.01 260);
+      --card-foreground: oklch(0.93 0.01 280);
       --primary: oklch(0.65 0.18 260);
+      --primary-foreground: oklch(0.12 0.01 260);
+      --secondary: oklch(0.25 0.01 280);
+      --secondary-foreground: oklch(0.95 0.01 280);
+      --muted: oklch(0.3 0.01 280);
+      --muted-foreground: oklch(0.65 0.02 280);
       --accent: oklch(0.7 0.2 30);
-      /* etc... */
+      --border: oklch(0.25 0.01 280);
     }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      border-color: var(--border);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      font-family: 'Geist', system-ui, sans-serif;
       background: var(--background);
       color: var(--foreground);
+      line-height: 1.6;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: color-mix(in srgb, var(--background) 80%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--foreground);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--foreground);
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--background);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .mobile-menu.show {
+      display: block;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 1rem 0;
+      font-size: 1.1rem;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 0 6rem;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      color: var(--muted-foreground);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      color: var(--muted-foreground);
+      max-width: 42rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      padding: 1rem 2.2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--foreground);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Sections */
+    section {
+      padding: 8rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    section.bg-muted {
+      background: color-mix(in srgb, var(--card) 50%, var(--background));
+    }
+
+    h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--primary);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 30px -10px color-mix(in srgb, var(--primary) 20%, transparent);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin: 0.3rem;
+      border: 1px solid color-mix(in srgb, var(--primary) 20%, transparent);
+    }
+
+    .project-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .period {
+      min-width: 140px;
+      color: var(--muted-foreground);
+      font-weight: 500;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      padding: 1rem 1.8rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--foreground);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: all 0.25s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--muted-foreground);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-btn { display: block; }
+      .experience-item { flex-direction: column; gap: 0.8rem; }
+      h2 { font-size: 2.5rem; }
     }
   </style>
 </head>
-<body class="antialiased min-h-screen font-sans">
+<body>
 
-  <!-- Navigation (simple, no state) -->
-  <nav class="sticky top-0 z-50 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--border)]">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="text-xl font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
-        Fahad Malik
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo">Fahad Malik</div>
+      
+      <div class="nav-links">
+        <a href="#about">about</a>
+        <a href="#skills">skills</a>
+        <a href="#projects">projects</a>
+        <a href="#experience">experience</a>
       </div>
-      <div class="hidden md:flex gap-8">
-        <a href="#about" class="text-sm capitalize hover:text-[var(--primary)] transition-colors">about</a>
-        <!-- add other links -->
-      </div>
-      <!-- Mobile menu button - needs JS for open/close -->
+
+      <button class="menu-btn" id="menuToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="min-h-screen flex items-center pt-20 pb-20">
-    <div class="max-w-6xl mx-auto w-full px-6">
-      <div class="max-w-2xl">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          Fahad <span class="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">Malik</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-[var(--muted-foreground)] mb-6 font-light">
-          Software Engineer | Web Developer | Ethical Hacker | Creative Designer
+  <section id="hero">
+    <div class="container">
+      <div>
+        <h1>Fahad <span style="background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Malik</span></h1>
+        <div class="subtitle">Software Engineer | Web Developer | Ethical Hacker | Creative Designer</div>
+        <p class="description">
+          23 years old software engineer with 3+ years of experience. I craft elegant solutions for complex problems, combining web development expertise with creative design and security knowledge.
         </p>
-        <!-- rest of hero text -->
+        <div style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View My Work</button>
+          <button class="btn btn-outline" onclick="document.getElementById('experience').scrollIntoView({behavior: 'smooth'})">Learn More</button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Add other sections similarly (about, skills, etc.) -->
-  <!-- Use your original class names with var(--color) syntax -->
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="grid-2">
+        <div>
+          <p style="font-size: 1.15rem; color: var(--muted-foreground); margin-bottom: 1.5rem;">
+            I'm a passionate software engineer graduating on <strong style="color: var(--foreground);">December 19, 2025</strong>. 
+            My journey in tech has been driven by curiosity and a desire to build impactful solutions.
+          </p>
+          <p style="font-size: 1.15rem; color: var(--muted-foreground);">
+            Beyond coding, I'm fascinated by cybersecurity and creative design. I believe the best solutions come from understanding both the technical and human aspects of a problem.
+          </p>
+        </div>
+        <div style="display: grid; gap: 1.5rem;">
+          <div class="card">
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">Years of Experience</div>
+            <div style="font-size: 3.5rem; font-weight: 800;">3+</div>
+          </div>
+          <div class="card">
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">Projects Completed</div>
+            <div style="font-size: 3.5rem; font-weight: 800;">10+</div>
+          </div>
+          <div class="card">
+            <div style="color: var(--muted-foreground); font-size: 0.95rem;">Client Satisfaction</div>
+            <div style="font-size: 3.5rem; font-weight: 800;">91%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Skills -->
+  <section id="skills" class="bg-muted">
+    <div class="container">
+      <h2>Skills & Expertise</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;">Web Development</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+            <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Node.js</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;">Design</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+            <span class="tag">UI/UX Design</span><span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">Design Systems</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;">Cybersecurity</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+            <span class="tag">Ethical Hacking</span><span class="tag">Penetration Testing</span><span class="tag">Network Security</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 style="font-size: 1.4rem; margin-bottom: 1.2rem;">Tools & Platforms</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+            <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">AWS</span><span class="tag">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <h2>Featured Projects</h2>
+      <div class="grid-2">
+        <div class="card">
+          <div class="project-title">
+            Project One <i class="fas fa-external-link-alt" style="font-size: 1.1rem; color: var(--muted-foreground);"></i>
+          </div>
+          <p style="color: var(--muted-foreground); margin-bottom: 1.2rem;">
+            A full-stack web application showcasing advanced React patterns and modern design.
+          </p>
+          <div>
+            <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="project-title">
+            Security Audit Tool <i class="fas fa-external-link-alt" style="font-size: 1.1rem; color: var(--muted-foreground);"></i>
+          </div>
+          <p style="color: var(--muted-foreground); margin-bottom: 1.2rem;">
+            Ethical hacking tool for penetration testing and vulnerability assessment.
+          </p>
+          <div>
+            <span class="tag">Python</span><span class="tag">Security</span><span class="tag">Networking</span>
+          </div>
+        </div>
+
+        <!-- Add more projects if you have real ones -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="bg-muted">
+    <div class="container">
+      <h2>Experience Highlights</h2>
+      <div style="display: grid; gap: 2rem;">
+        <div class="experience-item">
+          <div class="period">2022 - Present</div>
+          <div>
+            <h3 style="font-size: 1.4rem;">Software Engineer</h3>
+            <p style="color: var(--primary); margin: 0.4rem 0;">Freelance</p>
+            <p style="color: var(--muted-foreground);">Delivered 10+ projects with 91% client satisfaction. Specialized in web development and creative solutions.</p>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="period">2023 - 2024</div>
+          <div>
+            <h3 style="font-size: 1.4rem;">Full Stack Developer</h3>
+            <p style="color: var(--primary); margin: 0.4rem 0;">Various Startups</p>
+            <p style="color: var(--muted-foreground);">Built production-ready applications with focus on performance and user experience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <div class="container" style="text-align: center;">
+      <h2>Let's Connect</h2>
+      <p style="font-size: 1.2rem; color: var(--muted-foreground); max-width: 600px; margin: 0 auto 3rem;">
+        I'm always interested in connecting with fellow developers, designers, and innovators. Feel free to reach out!
+      </p>
+      <div class="contact-links">
+        <a href="https://discord.com/users/1329835276020748321" target="_blank" class="contact-link">
+          <i class="fab fa-discord"></i> Discord
+        </a>
+        <a href="https://www.linkedin.com/in/fahad-malik-031ab131b" target="_blank" class="contact-link">
+          <i class="fab fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://x.com/itz_loot" target="_blank" class="contact-link">
+          <i class="fab fa-twitter"></i> X (Twitter)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 Fahad Malik. Crafted with passion and precision.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu JS -->
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('show');
+    });
+
+    // Close on link click
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => mobileMenu.classList.remove('show'));
+    });
+  </script>
 </body>
 </html>
