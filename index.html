@@ -1,14 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fahad Malik Portfolio - Coming Soon</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fahad Malik | Software Engineer & Designer</title>
+  <meta name="description" content="Portfolio of Fahad Malik - Software engineer, web developer, ethical hacker, and creative designer with 3+ years of experience."/>
+  
+  <!-- Google Fonts (Geist) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN (v4 works great) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Geist', 'system-ui', 'sans-serif'],
+            mono: ['Geist Mono', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            background: 'oklch(0.98 0.01 280)',
+            foreground: 'oklch(0.1 0.02 280)',
+            primary: 'oklch(0.5 0.16 260)',
+            accent: 'oklch(0.6 0.18 30)',
+            // ... add all your other variables here
+            muted: 'oklch(0.88 0.01 280)',
+            mutedForeground: 'oklch(0.5 0.02 280)',
+            border: 'oklch(0.88 0.01 280)',
+            // Add more as needed
+          },
+          borderRadius: {
+            lg: 'var(--radius)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Your custom variables & dark mode -->
+  <style>
+    :root {
+      --background: oklch(0.98 0.01 280);
+      --foreground: oklch(0.1 0.02 280);
+      --primary: oklch(0.5 0.16 260);
+      --accent: oklch(0.6 0.18 30);
+      --muted: oklch(0.88 0.01 280);
+      --muted-foreground: oklch(0.5 0.02 280);
+      --border: oklch(0.88 0.01 280);
+      --radius: 0.625rem;
+      /* Add ALL your other variables here from globals.css */
+    }
+    .dark {
+      --background: oklch(0.12 0.01 260);
+      --foreground: oklch(0.95 0.01 280);
+      --primary: oklch(0.65 0.18 260);
+      --accent: oklch(0.7 0.2 30);
+      /* etc... */
+    }
+    body {
+      background: var(--background);
+      color: var(--foreground);
+    }
+  </style>
 </head>
-<body style="font-family: system-ui; text-align: center; padding: 50px; background: #0f0f1a; color: #ffffff;">
-  <h1>🚀 Portfolio Coming Soon!</h1>
-  <p>Hey! This is a placeholder page.</p>
-  <p>Working on the real Next.js version — will be live soon 🔥</p>
-  <p><a href="https://github.com/itzloot/Portfolio-" style="color: #00ff9d;">Check the repo →</a></p>
+<body class="antialiased min-h-screen font-sans">
+
+  <!-- Navigation (simple, no state) -->
+  <nav class="sticky top-0 z-50 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--border)]">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="text-xl font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">
+        Fahad Malik
+      </div>
+      <div class="hidden md:flex gap-8">
+        <a href="#about" class="text-sm capitalize hover:text-[var(--primary)] transition-colors">about</a>
+        <!-- add other links -->
+      </div>
+      <!-- Mobile menu button - needs JS for open/close -->
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="min-h-screen flex items-center pt-20 pb-20">
+    <div class="max-w-6xl mx-auto w-full px-6">
+      <div class="max-w-2xl">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          Fahad <span class="bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] bg-clip-text text-transparent">Malik</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-[var(--muted-foreground)] mb-6 font-light">
+          Software Engineer | Web Developer | Ethical Hacker | Creative Designer
+        </p>
+        <!-- rest of hero text -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Add other sections similarly (about, skills, etc.) -->
+  <!-- Use your original class names with var(--color) syntax -->
+
 </body>
 </html>
