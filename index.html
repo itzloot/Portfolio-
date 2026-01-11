@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Fahad Malik | Software Engineer & Designer</title>
   <meta name="description" content="Portfolio of Fahad Malik - Software engineer, web developer, ethical hacker, and creative designer with 3+ years of experience."/>
-  
+
   <!-- Icons (lucide-react like) - using simple SVG or fontawesome CDN for demo -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  
+
   <!-- Geist Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
       --background: oklch(0.98 0.01 280);
@@ -267,6 +267,27 @@
       align-items: center;
     }
 
+    .project-title a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .project-title a:hover {
+      text-decoration: underline;
+    }
+
+    .maintenance-label {
+      display: inline-block;
+      background: #7f1d1d;
+      color: #fecaca;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+
     .experience-item {
       display: flex;
       gap: 2rem;
@@ -325,7 +346,7 @@
   <nav>
     <div class="container">
       <div class="logo">Fahad Malik</div>
-      
+
       <div class="nav-links">
         <a href="#about">about</a>
         <a href="#skills">skills</a>
@@ -435,10 +456,11 @@
       <div class="grid-2">
         <div class="card">
           <div class="project-title">
-            LooMact <i class="fas fa-external-link-alt" style="font-size: 1.1rem; color: var(--muted-foreground);"></i>
+            <a href="https://lumorablitz.netlify.app" target="_blank" rel="noopener noreferrer">LumoraBlitz</a>
+            <i class="fas fa-external-link-alt" style="font-size: 1.1rem; color: var(--muted-foreground);"></i>
           </div>
           <p style="color: var(--muted-foreground); margin-bottom: 1.2rem;">
-            A full-stack web application showcasing advanced React patterns and modern design.
+            A modern, Tailwind CSS Web Page Templates For Better and Fast Coding.
           </p>
           <div>
             <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">TypeScript</span>
@@ -447,12 +469,16 @@
 
         <div class="card">
           <div class="project-title">
-            Security Audit Tool <i class="fas fa-external-link-alt" style="font-size: 1.1rem; color: var(--muted-foreground);"></i>
+            Security Audit Tool
+            <i class="fas fa-external-link-alt" style="font-size: 1.1rem; color: var(--muted-foreground);"></i>
           </div>
           <p style="color: var(--muted-foreground); margin-bottom: 1.2rem;">
             Ethical hacking tool for penetration testing and vulnerability assessment.
           </p>
-          <div>
+          <div class="maintenance-label">
+            Under Maintenance / In Development
+          </div>
+          <div style="margin-top: 1rem;">
             <span class="tag">Python</span><span class="tag">Security</span><span class="tag">Networking</span>
           </div>
         </div>
